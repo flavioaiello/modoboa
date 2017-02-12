@@ -1,6 +1,6 @@
 FROM django:latest
 
-ADD src /
+COPY files /
 
 RUN apt-get update && \
     apt-get install -y supervisor git nginx ssl-cert build-essential python-dev libxml2-dev libxslt-dev libjpeg-dev librrd-dev rrdtool clamav-daemon libdbi-perl amavisd-new dovecot-imapd dovecot-lmtpd dovecot-managesieved dovecot-sieve uwsgi uwsgi-plugin-python spamassassin pyzor razor --no-install-recommends && \
