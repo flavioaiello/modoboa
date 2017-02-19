@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+
+  modoboa:
+    build: .
+    privileged: true
+    network_mode: "bridge"
+    environment:
+      - ADMIN_PASSWORD=changeme
+    volumes:
+      - /tmp/modoboa/:/mailserver
+    ports:
+        - "8080:8080"
+    restart: always

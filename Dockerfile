@@ -1,16 +1,15 @@
-FROM django:latest
+FROM debian:jessie
 
 COPY files /
 
-RUN apt-get update && \
-    apt-get install -y supervisor git nginx ssl-cert build-essential python-dev libxml2-dev libxslt-dev libjpeg-dev librrd-dev rrdtool clamav-daemon libdbi-perl amavisd-new dovecot-imapd dovecot-lmtpd dovecot-managesieved dovecot-sieve uwsgi uwsgi-plugin-python spamassassin pyzor razor --no-install-recommends && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /var/run/supervisord && \
-    git clone https://github.com/modoboa/modoboa-installer.git /usr/src/app/
-
 WORKDIR /usr/src/app
 
-RUN ./run.py --force mail.serverking.ch
+RUN set -ex && \
+    apt-get update && \
+    apt-get install -y supervisor ca-certificates python git --no-install-recommends && \
+    apt-get clean && \
+    git clone https://github.com/modoboa/modoboa-installer.git /usr/src/app/ && \
+    ./run.py --force localhost
 
-CMD ["/usr/bin/supervisord"]
+#CMD ["supervisord"]
+CMD ["/sbin/init"]
