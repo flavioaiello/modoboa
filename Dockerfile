@@ -1,7 +1,5 @@
 FROM debian:jessie
 
-COPY files /
-
 WORKDIR /usr/src/app
 
 RUN set -ex && \
@@ -11,5 +9,7 @@ RUN set -ex && \
     git clone https://github.com/modoboa/modoboa-installer.git /usr/src/app/ && \
     ./run.py --force localhost
 
-#CMD ["supervisord"]
-CMD ["/sbin/init"]
+COPY files /
+
+CMD ["supervisord"]
+#CMD ["/sbin/init"]
