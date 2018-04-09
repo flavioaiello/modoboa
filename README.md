@@ -1,5 +1,7 @@
-# Modoboa (WIP! - Use at your own risk)
+# Modoboa (discontinued)
 Mail hosting made simple! http://www.modoboa.org
+
+Please consider the alternative open source mailstack project: https://github.com/flavioaiello/mailstack
 
 ## Getting started
 Please define your admin password, it will be changed on startup. The according default username is `admin`. Please refer to the official [Docs](http://www.modoboa.org) 
